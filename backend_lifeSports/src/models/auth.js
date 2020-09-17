@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 /**
  *  2020 - 09 - 16 (Wed)
@@ -90,6 +91,32 @@ UserSchema.methods.serialize = function() {
 
     return data;
 }
+
+/**
+ *  2020 - 09 - 17 (Thur)
+ *  Writer: 조봉준
+ *  
+ *  [ generateToken method ]  
+ *  
+ *  For user's security, Tokens are delivered to users 
+ *  when login and registration are successful
+ */
+UserSchema.methods.generateToken = function() {
+    const token = jwt.sign(
+        {
+            _id: this.id,
+            userId: this.userId,
+        },
+
+        process.env.JWT_SECRET,
+
+        {
+            expiresIn: '7d',
+        },
+    );
+
+    return token;
+};
 
 const User = mongoose.model('User', UserSchema);
 

@@ -84,17 +84,90 @@ export const register = async ctx => {
         await user.save();                   // Save Database
 
         ctx.body = user.serialize();
+
+        const token = user.generateToken();
+
+        ctx.cookies.set('access_token', token, {
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 7days
+            httpOnly: true,
+        });
+
     } catch ( e ) {
         ctx.throw(500, e);
     }
 };
 
+
+/*
+ *  2020 - 09 - 17 (Thur)
+ *  Writer: 조봉준
+ *  
+ *  [ login method ]
+ * 
+ *  POST http://localhost:4000/api/auth/login  
+ *  {
+ *      userId: String,                        
+        hashedPassword: String,
+ *  }
+ */
 export const login = async ctx => {
-    // login
+    const { userId, password } = ctx.request.body;
+
+    if(!userId || !password) {
+        ctx.status = 401; // Unauthorized
+
+        return;
+    }
+
+    try {
+        const user = await User.findByUserId(userId);
+
+        if(!user) {
+            ctx.status = 401;
+
+            return;
+        }
+
+        const valid = await user.checkPassword(password);
+
+        if(!valid) {
+            ctx.status = 401;
+
+            return;
+        }
+
+        ctx.body = user.serialize();
+
+        const token = user.generateToken();
+
+        ctx.cookies.set('access_token', token, {
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 7days
+            httpOnly: true,
+        });
+
+    } catch (e) {
+        ctx.throw(500, e);
+    }
 }
 
+/*
+ *  2020 - 09 - 17 (Thur)
+ *  Writer: 조봉준
+ *  
+ *  [ check method ]
+ * 
+ *  GET http://localhost:4000/api/auth/check  
+ */
 export const check = async ctx => {
-    // check login status
+    const { user } = ctx.state;
+
+    if(!user) {
+        ctx.status = 401; // Unauthorized
+
+        return;
+    }
+    console.log(ctx.body);
+    ctx.body = user;
 };
 
 export const logout = async ctx => {
