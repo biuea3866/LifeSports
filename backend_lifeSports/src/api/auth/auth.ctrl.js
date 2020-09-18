@@ -170,6 +170,15 @@ export const check = async ctx => {
     ctx.body = user;
 };
 
+/*
+ *  2020 - 09 - 18 (Fri)
+ *  Writer: 조봉준
+ *  
+ *  [ logout method ]
+ * 
+ *  POST http://localhost:4000/api/auth/logout  
+ */
 export const logout = async ctx => {
-    // logout
+    ctx.cookies.set('access_token');
+    ctx.status = 204;
 };
