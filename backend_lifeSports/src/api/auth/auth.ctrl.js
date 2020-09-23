@@ -30,16 +30,17 @@ import User from '../../models/auth';
  */
 export const register = async ctx => {
     const schema = Joi.object().keys({
-        userId: Joi.string()
-            .alphanum()
+        email: Joi.string()
             .min(3)
             .max(20)
             .required(),
         password: Joi.string().required(),
         userName: Joi.string().required(),
-        email: Joi.string().required(),
-        socialNumberPrefix: Joi.string().required(),
-        socialNumberSuffix: Joi.string().required(),
+        nickName: Joi.string().required(),
+        birthYear: Joi.string().required(),
+        birthMonth: Joi.string().required(),
+        birthDay: Joi.string().required(),
+        gender: Joi.string().required(),
         addr: Joi.string().required(),
         phoneMiddleNumber: Joi.string().required(),
         phoneLastNumber: Joi.string().required(),
@@ -54,14 +55,14 @@ export const register = async ctx => {
         return;
     }
 
-    const { userId, password, userName, 
-            email, socialNumberPrefix,
-            socialNumberSuffix, addr, 
+    const { email, password, userName, 
+            nickName, birthYear, birthMonth, 
+            birthDay, gender, addr,
             phoneMiddleNumber, phoneLastNumber 
         } = ctx.request.body;
 
     try {
-        const exists = await User.findByUserId(userId);
+        const exists = await User.findByUserId(email);
 
         if(exists) {
             ctx.status = 409; // Conflict
@@ -70,14 +71,17 @@ export const register = async ctx => {
         }
 
         const user = new User({
-            userId,
-            userName,
-            email,
-            socialNumberPrefix,
-            socialNumberSuffix,
+            email, 
+            password, 
+            userName, 
+            nickName,
+            birthYear, 
+            birthMonth, 
+            birthDay, 
+            gender, 
             addr,
-            phoneMiddleNumber,
-            phoneLastNumber,
+            phoneMiddleNumber, 
+            phoneLastNumber 
         });
 
         await user.setPassword(password);    // Set Password
@@ -111,16 +115,16 @@ export const register = async ctx => {
  *  }
  */
 export const login = async ctx => {
-    const { userId, password } = ctx.request.body;
+    const { email, password } = ctx.request.body;
 
-    if(!userId || !password) {
+    if(!email || !password) {
         ctx.status = 401; // Unauthorized
 
         return;
     }
 
     try {
-        const user = await User.findByUserId(userId);
+        const user = await User.findByUserId(email);
 
         if(!user) {
             ctx.status = 401;

@@ -15,7 +15,6 @@ const StackNav = () => {
                 <Stack.Screen
                     name="Login"
                     component={ LoginScreen }
-                    options={{ title: 'Login '}}
                 />
                 <Stack.Screen
                     name="Join"
@@ -25,6 +24,7 @@ const StackNav = () => {
                 <Stack.Screen
                     name="Tab"
                     component={ BottomNavigation }
+                    options={{ title: 'Tab' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

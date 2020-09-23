@@ -20,12 +20,14 @@ import jwt from 'jsonwebtoken';
  */
 
 const UserSchema = new Schema({
-    userId: String,                        
-    hashedPassword: String,
-    userName: String,
     email: String,
-    socialNumberPrefix: String,
-    socialNumberSuffix: String,
+    hashedPassword: String,
+    userName: String,                         // 본명
+    nickName: String,
+    birthYear: String,
+    birthMonth: String,
+    birthDay: String,
+    gender: String,
     addr: String,
     phoneMiddleNumber: String,
     phoneLastNumber: String,
@@ -72,8 +74,8 @@ UserSchema.methods.checkPassword = async function(password) {
  *  
  *  1. Using userID find user information.
  */
-UserSchema.statics.findByUserId = function(userId) {
-    return this.findOne({ userId });
+UserSchema.statics.findByUserId = function(email) {
+    return this.findOne({ email });
 };
 
 /**
@@ -105,7 +107,7 @@ UserSchema.methods.generateToken = function() {
     const token = jwt.sign(
         {
             _id: this.id,
-            userId: this.userId,
+            email: this.email,
         },
 
         process.env.JWT_SECRET,
