@@ -12,30 +12,29 @@ const Tab = createBottomTabNavigator();
 const BottomNavigation = ({ route }) => {
     const user = route.params;
     
-    console.log(user.user.email);
-    
     return(
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color }) => {
                     let iconName;
                     let iconSize;
-
-                    if(route.name === 'Home'){
-                        iconName = 'home-outline';
+                    
+                    if(route.name === "Home"){
+                        iconName = 'ios-home-outline';
                         iconSize = focused ? 32 : 24;
                     } else if (route.name === 'Chat') {
-                        iconName = 'chatbubble-outline';
+                        iconName = 'ios-chatbubbles-outline';
                         iconSize = focused ? 32 : 24;
                     } else if (route.name === 'Map'){
-                        iconName = 'location-outline';
+                        iconName = 'ios-location-outline';
                         iconSize = focused ? 32 : 24;
                     } else if (route.name === 'Setting'){
-                        iconName = 'person-outline';
+                        iconName = 'ios-person-outline';
                         iconSize = focused ? 32 : 24;
                     }
 
                     return (
+                        console.log(iconName),
                         <Icon 
                             size={ iconSize }
                             name={ iconName } 
@@ -43,7 +42,7 @@ const BottomNavigation = ({ route }) => {
                         />
                     );
                 },
-            })}
+                })}
 
             tabBarOptions={{
                 activeTintColor: palette.blue[4],

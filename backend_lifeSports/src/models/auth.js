@@ -11,8 +11,8 @@ import jwt from 'jsonwebtoken';
  *  userId : userId that is unique
  *  hashedPassword : Entered password and transform to hash password
  *  userName: Real userName
- *  socialNumberPrefix: 6 letters number of year, month, day
- *  socialNumberSuffix: 1 letter to indicate gender 
+ *  birth: 6 letters number of year, month, day
+ *  gender: 1 letter to indicate gender 
  *                      e.g) 1, 3 - male / 2, 4 - female
  *  addr: User's address
  *  phoneMiddleNumber: Phone middle Number
@@ -24,13 +24,10 @@ const UserSchema = new Schema({
     hashedPassword: String,
     userName: String,                         // 본명
     nickName: String,
-    birthYear: String,
-    birthMonth: String,
-    birthDay: String,
-    gender: String,
+    socialNumberPrefix: String,
+    socialNumberSuffix: String,
     addr: String,
-    phoneMiddleNumber: String,
-    phoneLastNumber: String,
+    phoneNumber: String,
     point: Number,
 });
 

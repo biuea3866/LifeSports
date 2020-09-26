@@ -1,21 +1,28 @@
 import * as React from 'react';
 import {
-  View,
-  Text
+  ScrollView,
+  Text,
+  StyleSheet,
 } from 'react-native';
+import JoinForm from './JoinForm';
 
-const JoinScreen = () => {
+const JoinScreen = ({ navigation }) => {
   return(
-    <View style={
-      {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-      }
-    }>
+    <ScrollView 
+      style={ styles.container }
+    >
       <Text>Join Screen</Text>
-    </View>
+      <JoinForm
+        navigation={ navigation }
+      />
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+});
 
 export default JoinScreen;

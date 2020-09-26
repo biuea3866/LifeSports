@@ -37,13 +37,10 @@ export const register = async ctx => {
         password: Joi.string().required(),
         userName: Joi.string().required(),
         nickName: Joi.string().required(),
-        birthYear: Joi.string().required(),
-        birthMonth: Joi.string().required(),
-        birthDay: Joi.string().required(),
-        gender: Joi.string().required(),
+        socialNumberPrefix: Joi.string().required(),
+        socialNumberSuffix: Joi.string().required(),
         addr: Joi.string().required(),
-        phoneMiddleNumber: Joi.string().required(),
-        phoneLastNumber: Joi.string().required(),
+        phoneNumber: Joi.string().required(),
     });
 
     const result = schema.validate(ctx.request.body);
@@ -55,10 +52,10 @@ export const register = async ctx => {
         return;
     }
 
-    const { email, password, userName, 
-            nickName, birthYear, birthMonth, 
-            birthDay, gender, addr,
-            phoneMiddleNumber, phoneLastNumber 
+    const { email, password, 
+            userName, nickName, 
+            socialNumberPrefix, socialNumberSuffix, 
+            addr, phoneNumber 
         } = ctx.request.body;
 
     try {
@@ -75,13 +72,10 @@ export const register = async ctx => {
             password, 
             userName, 
             nickName,
-            birthYear, 
-            birthMonth, 
-            birthDay, 
-            gender, 
+            socialNumberPrefix,
+            socialNumberSuffix,
             addr,
-            phoneMiddleNumber, 
-            phoneLastNumber 
+            phoneNumber 
         });
 
         await user.setPassword(password);    // Set Password

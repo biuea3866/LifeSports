@@ -111,6 +111,18 @@ const LoginForm = ({ navigation }) => {
                 onPress={ onPress }
                 title="Login"
             />
+            <StyledButton
+                onPress={
+                    () => {
+                        navigation.navigate(
+                            'Join', {
+                                name: 'Join'
+                            }
+                        )
+                    }
+                }
+                title="Join"
+            />
         </View>
     );
 }

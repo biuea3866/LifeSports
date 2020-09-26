@@ -1,21 +1,24 @@
 import * as React from 'react';
 import {
   View,
-  Text
+  Text,
+  StyleSheet,
+  ScrollView
 } from 'react-native';
 
 const HomeScreen = () => {
   return(
-    <View style={
-      {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-      }
-    }>
+    <ScrollView 
+      style={ styles.container }
+    >
       <Text>Home Screen</Text>
-    </View>
+    </ScrollView>
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 export default HomeScreen;

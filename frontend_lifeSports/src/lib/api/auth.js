@@ -32,7 +32,17 @@ export const login = ({ email, password }) =>
  *  1. POST http://localhost:4000/api/auth/register/
  *  2. Save user data in LifeSports Database
  */
-export const register = ({ email, password }) =>
-    client.post('http://localhost:4000/api/auth/register', { email, password });
+export const register = ({ 
+        email, password, 
+        userName, nickName, 
+        socialNumberPrefix, socialNumberSuffix, 
+        addr, phoneNumber
+    }) => client.post('http://localhost:4000/api/auth/register', { 
+        email, password, 
+        userName, nickName, 
+        socialNumberPrefix, socialNumberSuffix, 
+        addr, phoneNumber
+    }
+);
 
 export const check = () => client.get('http://localhost:4000/api/auth/check');

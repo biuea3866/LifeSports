@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import palette from '../../styles/palette';
 
-const StyledTextInput = ({ placeholder, 
-    placeholderTextColor, value, inputAccessoryViewID,
-    secureTextEntry, onChange }) => {
+const StyledTextInput = ({ 
+    placeholder, placeholderTextColor, 
+    value, inputAccessoryViewID,
+    secureTextEntry, onChange, editable }) => {
     return(
         <TextInput
             inputAccessoryViewID={ inputAccessoryViewID }
@@ -14,7 +15,7 @@ const StyledTextInput = ({ placeholder,
             secureTextEntry= { secureTextEntry }
             onChange={ onChange }
             value={ value }
-            
+            editable={ editable }
         />
     );
 };
@@ -27,6 +28,7 @@ const styles = { color } =  StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: palette.white[0],
+        color: palette.black[0],
         fontSize: 15,
         margin: 10,
     }
