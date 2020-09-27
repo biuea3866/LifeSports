@@ -46,3 +46,13 @@ export const register = ({
 );
 
 export const check = () => client.get('http://localhost:4000/api/auth/check');
+
+/*
+ *  2020 - 09 - 26 (Sat)
+ *  Writer: 조봉준
+ *  
+ *  [ readUser method ]
+ * 
+ *  POST http://localhost:4000/api/auth/{id}  
+ */
+export const readUser = email => client.get(`http://localhost:4000/api/auth/${email}`);

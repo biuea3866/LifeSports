@@ -35,7 +35,7 @@ const LoginForm = ({ navigation }) => {
     const onChange = e => {
         const inputAccessoryViewID = e.target._internalFiberInstanceHandleDEV.memoizedProps.inputAccessoryViewID;
         const value = e.nativeEvent.text;
-        
+
         dispatch(
             changeField({
                 form: 'login',
@@ -56,6 +56,7 @@ const LoginForm = ({ navigation }) => {
             return;
         }
 
+        console.log(user);
         if(auth) {
             navigation.navigate(
                 'Tab', { 

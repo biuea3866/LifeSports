@@ -10,7 +10,7 @@ import SettingScreen from '../Setting/Setting';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigation = ({ route }) => {
-    const user = route.params;
+    const user = route.params.user;
     
     return(
         <Tab.Navigator
@@ -34,7 +34,6 @@ const BottomNavigation = ({ route }) => {
                     }
 
                     return (
-                        console.log(iconName),
                         <Icon 
                             size={ iconSize }
                             name={ iconName } 
@@ -52,18 +51,22 @@ const BottomNavigation = ({ route }) => {
             <Tab.Screen 
                 name="Home"
                 component={ HomeScreen }
+                initialParams={{ user: user }}
             />
             <Tab.Screen 
                 name="Chat"
                 component={ ChatScreen }
+                initialParams={{ user: user }}
             />
             <Tab.Screen 
                 name="Map"
                 component={ MapScreen }
+                initialParams={{ user: user }}
             />
             <Tab.Screen 
                 name="Setting"
                 component={ SettingScreen }
+                initialParams={{ user: user }}
             />
         </Tab.Navigator>
     )

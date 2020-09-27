@@ -180,3 +180,12 @@ export const logout = async ctx => {
     ctx.cookies.set('access_token');
     ctx.status = 204;
 };
+
+/*
+ *  2020 - 09 - 26 (Sat)
+ *  Writer: 조봉준
+ *  
+ *  [ getUserByEmail method ]
+ * 
+ *  POST http://localhost:4000/api/auth/{id}  
+ */
