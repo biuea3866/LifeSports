@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 import auth from './auth';
+import maps from './maps';
 
 /**
  *  2020 - 09 - 17 (Wed)
@@ -12,5 +13,6 @@ import auth from './auth';
 const api = new Router();
 
 api.use('/auth', auth.routes());
+api.use('/maps', maps.routes());
 
 export default api;
