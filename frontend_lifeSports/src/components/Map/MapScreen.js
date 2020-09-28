@@ -4,14 +4,17 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import NaverMap from '../Common/NaverMap';
+import NaverMap from './MapComponents/NaverMap';
+import CustomMarker from './MapComponents/CustomMarker';
 
 const MapScreen = () => {
   return(
     <View 
       style={ styles.container }
     >
-      <NaverMap/>
+      <NaverMap>
+        <CustomMarker/>
+      </NaverMap>
     </View>
   );
 }
