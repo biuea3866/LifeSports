@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   ScrollView,
-  Text,
   StyleSheet,
 } from 'react-native';
 import SettingHeader from './SettingComponets/SettingHeader';
 import SettingBody from './SettingComponets/SettingBody';
 import SettingFooter from './SettingComponets/SettingFooter';
-import StyledLine from '../Common/StyledLine';
+import SettingArticle from './SettingComponets/SettingArticle';
 
-const SettingScreen = ({ navigation, route }) => {
-  const [user, setUser] = useState('');
-
-  useEffect( () => {
-    setUser(route.params.user);  
-  }, [user]);
-
-  console.log(user);
-
+const SettingScreen = ({ user }) => {
   return(
     <ScrollView 
       style={ styles.container }
@@ -25,8 +16,8 @@ const SettingScreen = ({ navigation, route }) => {
       <SettingHeader
         user={ user }
       />
-      {/* <StyledLine/> */}
       <SettingBody/>
+      <SettingArticle/>
       <SettingFooter/>
     </ScrollView>
   );

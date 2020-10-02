@@ -55,4 +55,4 @@ export const check = () => client.get('http://localhost:4000/api/auth/check');
  * 
  *  POST http://localhost:4000/api/auth/{id}  
  */
-export const readUser = email => client.get(`http://localhost:4000/api/auth/${email}`);
+export const readUser = id => client.get(`http://localhost:4000/api/auth/${id}`);

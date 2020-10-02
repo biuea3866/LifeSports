@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import palette from '../../../styles/palette';
+import MileageComponent from './MileageComponent';
+import LogoutButton from './LogoutButton';
 
 const SettingFooter = () => {
 
@@ -8,20 +10,19 @@ const SettingFooter = () => {
         <View
             style={ styles.container }
         >
-            <Text>
-                Footer
-            </Text>
+            <MileageComponent/>
+            <LogoutButton/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: 400,
-        height: 400,
+        width: 420,
+        height: 200,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: palette.red[0],
+        backgroundColor: palette.white[0],
     },
 });
 

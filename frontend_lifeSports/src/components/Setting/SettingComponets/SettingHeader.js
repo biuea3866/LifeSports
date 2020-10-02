@@ -3,11 +3,16 @@ import { StyleSheet, View, Text } from 'react-native';
 import palette from '../../../styles/palette';
 
 const SettingHeader = ({ user }) => {
-    // console.log(user.email);
+
     return(
         <View
             style={ styles.container }
         >
+            <Text
+                style={ styles.textBold }
+            >
+                { user.userName }
+            </Text>
             <Text>
                 { user.email }
             </Text>
@@ -17,12 +22,16 @@ const SettingHeader = ({ user }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 400,
-        height: 200,
+        width: 420,
+        height: 100,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: palette.red[0],
+        backgroundColor: palette.gray[3],
     },
+    textBold: {
+        fontWeight: 'bold',
+        fontSize: 17
+    }
 });
 
 export default SettingHeader;

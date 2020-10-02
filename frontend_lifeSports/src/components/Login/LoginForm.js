@@ -25,11 +25,12 @@ const LoginForm = ({ navigation }) => {
  */
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
-    const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
+    const { form, auth, authError, user, userInfo } = useSelector(({ auth, user, userInfo }) => ({
         form: auth.login,
         auth: auth.auth,
         authError: auth.authError,
         user: user.user,
+        userInfo: auth.userInfo
     }));
 
     const onChange = e => {
@@ -49,23 +50,24 @@ const LoginForm = ({ navigation }) => {
         e.preventDefault();
 
         const { email, password } = form;
-
+        
         dispatch(login({ email, password }));
 
         if(authError) {
             return;
         }
 
-        console.log(user);
         if(auth) {
             navigation.navigate(
                 'Tab', { 
                     name: 'Tab',
-                    user: form, 
+                    user: user._id, 
                 }
             )
         }
     };
+
+    
 
     useEffect( () => {
         dispatch(initializeForm('login'));

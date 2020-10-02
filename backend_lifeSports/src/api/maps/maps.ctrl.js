@@ -72,6 +72,22 @@ export const write = async ctx => {
     }
 };
 
-export const list = ctx => {};
+ /*
+ *  2020 - 09 - 30 (Wed)
+ *  Writer: 조봉준
+ *  
+ *  [ list method ]
+ * 
+ *  GET http://localhost:4000/api/maps/  
+ */
+export const list = async ctx => {
+    try {
+        const maps = await Map.find().exec();
+
+        ctx.body = maps;
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+};
 
 export const read = ctx => {};

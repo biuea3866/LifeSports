@@ -109,7 +109,10 @@ export const register = async ctx => {
  *  }
  */
 export const login = async ctx => {
-    const { email, password } = ctx.request.body;
+    const { 
+        email, 
+        password
+    } = ctx.request.body;
 
     if(!email || !password) {
         ctx.status = 401; // Unauthorized
@@ -136,6 +139,7 @@ export const login = async ctx => {
 
         ctx.body = user.serialize();
 
+        console.log(ctx.body);
         const token = user.generateToken();
 
         ctx.cookies.set('access_token', token, {
@@ -185,7 +189,24 @@ export const logout = async ctx => {
  *  2020 - 09 - 26 (Sat)
  *  Writer: 조봉준
  *  
- *  [ getUserByEmail method ]
+ *  [ readUser method ]
  * 
- *  POST http://localhost:4000/api/auth/{id}  
+ *  POST http://localhost:4000/api/auth/readUser/{id}  
  */
+export const readUser = async ctx => {
+    const { id } = ctx.params;
+
+    try {
+        const user = await User.findById(id).exec();
+
+        if(!user) {
+            ctx.status = 404;
+
+            return;
+        }
+
+        ctx.body = user;
+    } catch(e) {
+        ctx.throw(500, e);
+    }
+}

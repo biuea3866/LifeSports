@@ -1,17 +1,27 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useDispatch, useSelector } from 'react-redux';
+import { readUser } from '../../modules/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
 import palette from '../../styles/palette';
 import HomeScreen from '../Home/HomeScreen';
 import MapScreen from '../Map/MapScreen';
-import ChatScreen from '../Chat/ChatScreen';
+import BoardScreen from '../Board/BoardScreen';
 import SettingScreen from '../Setting/Setting';
 
 const Tab = createBottomTabNavigator();
 
 const BottomNavigation = ({ route }) => {
     const user = route.params.user;
-    
+    const dispatch = useDispatch();
+    const { userInfo } = useSelector(({ auth }) => ({
+        userInfo: auth.userInfo
+    }));
+
+    useEffect( () => {
+        dispatch(readUser(user));
+    }, [dispatch, user]);
+
     return(
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -20,16 +30,16 @@ const BottomNavigation = ({ route }) => {
                     let iconSize;
                     
                     if(route.name === "Home"){
-                        iconName = 'ios-home-outline';
+                        iconName = focused ? 'ios-home' : 'ios-home-outline';
                         iconSize = focused ? 32 : 24;
-                    } else if (route.name === 'Chat') {
-                        iconName = 'ios-chatbubbles-outline';
+                    } else if (route.name === 'Board') {
+                        iconName = focused ? 'ios-reader' : 'ios-reader-outline';
                         iconSize = focused ? 32 : 24;
                     } else if (route.name === 'Map'){
-                        iconName = 'ios-location-outline';
+                        iconName = focused ? 'ios-location' : 'ios-location-outline';
                         iconSize = focused ? 32 : 24;
                     } else if (route.name === 'Setting'){
-                        iconName = 'ios-person-outline';
+                        iconName = focused ? 'ios-person' : 'ios-person-outline';
                         iconSize = focused ? 32 : 24;
                     }
 
@@ -41,7 +51,7 @@ const BottomNavigation = ({ route }) => {
                         />
                     );
                 },
-                })}
+            })}
 
             tabBarOptions={{
                 activeTintColor: palette.blue[4],
@@ -51,22 +61,20 @@ const BottomNavigation = ({ route }) => {
             <Tab.Screen 
                 name="Home"
                 component={ HomeScreen }
-                initialParams={{ user: user }}
             />
             <Tab.Screen 
-                name="Chat"
-                component={ ChatScreen }
-                initialParams={{ user: user }}
+                name="Board"
+                component={ BoardScreen }
             />
             <Tab.Screen 
                 name="Map"
                 component={ MapScreen }
-                initialParams={{ user: user }}
             />
             <Tab.Screen 
                 name="Setting"
-                component={ SettingScreen }
-                initialParams={{ user: user }}
+                children={ 
+                    () => <SettingScreen user={ userInfo } />
+                }
             />
         </Tab.Navigator>
     )

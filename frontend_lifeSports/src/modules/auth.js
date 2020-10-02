@@ -31,8 +31,6 @@ const [READ_USER, READ_USER_SUCCESS, READ_USER_FAILURE] = createRequestActionTyp
     'auth/READ_USER',
 );
 
-const UNLOAD_USER = 'auth/UNLOAD_USER';
-
 export const changeField = createAction(
     CHANGE_FILED,
     ({ form, key, value }) => ({
@@ -50,7 +48,6 @@ export const register = createAction(
         userName, nickName,  
         socialNumberPrefix, socialNumberSuffix, 
         addr, phoneNumber }) => ({
-
         email, password,
         userName, nickName, 
         socialNumberPrefix, socialNumberSuffix, 
@@ -64,6 +61,8 @@ export const login = createAction(
         password,
     })
 );
+
+export const readUser = createAction(READ_USER, id => id);
 
 // Saga
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
@@ -93,7 +92,7 @@ const initialState = {
     },
     auth: null,
     authError: null,
-    user: null,
+    userInfo: null,
     error: null,
 };
 
@@ -130,15 +129,14 @@ const auth = handleActions(
             ...state,
             authError: error,
         }),
-        [READ_USER_SUCCESS]: (state, { payload: user }) => ({
+        [READ_USER_SUCCESS]: (state, { payload: userInfo }) => ({
             ...state,
-            user,
+            userInfo,
         }),
-        [READ_USER_FAILURE]: (state, { payload: user }) => ({
+        [READ_USER_FAILURE]: (state, { payload: userInfo }) => ({
             ...state,
             error,
         }),
-        [UNLOAD_USER]: () => initialState,
     },
     initialState,
 );
