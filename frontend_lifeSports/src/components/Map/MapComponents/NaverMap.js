@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useEffect } from 'react-redux';
 import NaverMapView from 'react-native-nmap';
-import Geolocation from '@react-native-community/geolocation';
+import MapHeader from './MapHeader';
 
 /*  2020 - 09 - 28 (Mon)
 *  Writer: 조봉준
@@ -11,53 +11,38 @@ import Geolocation from '@react-native-community/geolocation';
 *  
 */
 const NaverMap = () => {
-    const P0 = {latitude: 37.564362, longitude: 126.977011};
-    const [currentLongitude, setCurrentLongitude] = useState('');
-    const [currentLatitude, setCurrentLatitude] = useState('');
-    const userPosition = {
-        latitude: 0,
-        longitude: 0
-    };
-
-    Geolocation.getCurrentPosition(
-        //Will give you the current location
-        (position) => {
-        //getting the Longitude from the location json
-            setCurrentLongitude((position.coords.longitude));
-            //getting the Latitude from the location json
-            setCurrentLatitude((position.coords.latitude));
-
-            userPosition.latitude = currentLatitude;
-            userPosition.longitude = currentLongitude;
-        }, 
-        (error) => {
-            alert(error.message)
-        }, 
-        {
-            enableHighAccuracy: false,
-            maximumAge: 1000 
-        },
-    );
-
+    // 추후에 현재위치 표시
+    const defaultLocation = {latitude: 37.6009735 , longitude: 126.9484764};
+   
     return(
-        <NaverMapView
+        <View
             style={ styles.MapContainer }
-            showsMyLocationButton={ true }
-            center={
-                {
-                    ...P0,
-                    zoom: 16
+        >
+           <MapHeader/>
+           <NaverMapView
+                style={ styles.MapViewContainer }
+                showsMyLocationButton={ true }
+                center={
+                    {
+                        ...defaultLocation,
+                        zoom: 16
+                    }
                 }
-            }
-            scaleBar={ true }
-        />
+                scaleBar={ true }
+            /> 
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     MapContainer: {
+        flexDirection: 'column',
         width: '100%',
         height: '100%',
+    },
+    MapViewContainer: {
+        width: '100%',
+        height: '90%'
     }
 });
 

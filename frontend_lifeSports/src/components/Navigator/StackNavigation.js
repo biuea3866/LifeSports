@@ -25,7 +25,10 @@ const StackNav = () => {
                 <Stack.Screen
                     name="Tab"
                     component={ BottomNavigation }
-                    options={{ title: 'Tab' }}
+                    options={{ 
+                        title: 'Tab',
+                        headerShown: false,
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

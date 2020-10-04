@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import palette from '../../styles/palette';
 import HomeScreen from '../Home/HomeScreen';
 import MapScreen from '../Map/MapScreen';
-import BoardScreen from '../Board/BoardScreen';
+import BoardStackNav from './BoardNavigator/BoardStackNavigation';
 import SettingScreen from '../Setting/Setting';
 
 const Tab = createBottomTabNavigator();
@@ -64,7 +64,9 @@ const BottomNavigation = ({ route }) => {
             />
             <Tab.Screen 
                 name="Board"
-                component={ BoardScreen }
+                children={
+                    () => <BoardStackNav user={ userInfo }/>
+                }
             />
             <Tab.Screen 
                 name="Map"
