@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { useEffect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { listMaps } from '../../../modules/maps';
 import NaverMapView from 'react-native-nmap';
-import MapHeader from './MapHeader';
+import CustomMarker from './CustomMarker';
+import { MapConsumer } from '../context/MapContext';
 
 /*  2020 - 09 - 28 (Mon)
 *  Writer: 조봉준
@@ -11,38 +13,63 @@ import MapHeader from './MapHeader';
 *  
 */
 const NaverMap = () => {
+    const dispatch = useDispatch();
+    const { maps, error, loading } = useSelector(
+        ({ maps, loading }) => ({
+            maps: maps.maps,
+            error: maps.error,
+        }),
+    );
+    useEffect( () => {
+        dispatch(listMaps());
+    }, [dispatch]);
+    
     // 추후에 현재위치 표시
     const defaultLocation = {latitude: 37.6009735 , longitude: 126.9484764};
-   
+
     return(
-        <View
-            style={ styles.MapContainer }
-        >
-           <MapHeader/>
-           <NaverMapView
-                style={ styles.MapViewContainer }
-                showsMyLocationButton={ true }
-                center={
-                    {
-                        ...defaultLocation,
-                        zoom: 16
-                    }
-                }
-                scaleBar={ true }
-            /> 
-        </View>
+        <MapConsumer>
+            {
+                ({ state }) => (
+                    <NaverMapView
+                        style={
+                            state.visible ? 
+                            styles.OpenBoxMapContainer :
+                            styles.CloseBoxMapContainer 
+                        }
+                        showsMyLocationButton={ true }
+                        center={
+                            {
+                                ...defaultLocation,
+                                zoom: 11
+                            }
+                        }
+                        scaleBar={ true }
+                    >
+                        { 
+                            maps ?
+                            maps.map(
+                                (map, i) => {
+                                    return <CustomMarker key={ i } data={ map }/>
+                                }
+                            ) :
+                            console.log("Map Data Loading..")
+                        }
+                    </NaverMapView> 
+                )
+            }
+        </MapConsumer>
     )
 }
 
 const styles = StyleSheet.create({
-    MapContainer: {
-        flexDirection: 'column',
+    OpenBoxMapContainer: {
         width: '100%',
-        height: '100%',
+        height: '60%',
     },
-    MapViewContainer: {
+    CloseBoxMapContainer: {
         width: '100%',
-        height: '90%'
+        height: '90%',
     }
 });
 

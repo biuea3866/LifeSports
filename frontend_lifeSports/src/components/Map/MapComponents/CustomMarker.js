@@ -1,8 +1,10 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { Marker } from 'react-native-nmap';
 import palette from '../../../styles/palette';
 import markerImage from '../../../../android/app/src/main/assets/img/markerImage.png';
+import MapFooter from './MapFooter';
+import { MapConsumer } from '../context/MapContext';
 
 /*  2020 - 09 - 28 (Mon)
 *  Writer: 조봉준
@@ -10,13 +12,36 @@ import markerImage from '../../../../android/app/src/main/assets/img/markerImage
 *  [ NaverMap API Marker ]  
 *  
 */
+const CustomMarker = ({ data }) => {
+    const coordinate = {
+        latitude: data.ycode,
+        longitude: data.xcode
+    };
 
-const CustomMarker = () => {
     return(
-        <Marker
-            pinColor={ palette.blue[4] }
-            image={ markerImage }
-        />
+        <View>
+            <MapConsumer>
+                {({ actions }) => (
+                    <Marker
+                        coordinate={ coordinate }
+                        image={ markerImage }
+                        pinColor={ palette.blue[4] }
+                        caption={
+                            {
+                                text: data.nm,
+                                textSize: 15,
+                            }
+                        }
+                        onClick={ 
+                            () => {
+                                actions.setVisible(true)
+                                actions.setMap(data)
+                            }
+                        }
+                    />
+                )}
+            </MapConsumer>
+        </View>
     )
 };
 

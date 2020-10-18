@@ -15,12 +15,17 @@ const StackNav = () => {
                 <Stack.Screen
                     name="Login"
                     component={ LoginScreen }
-                    options={{ title: 'Login' }}
+                    options={{ 
+                        title: 'Login',
+                        headerShown: false,
+                    }}
                 />
                 <Stack.Screen
                     name="Join"
                     component={ JoinScreen }
-                    options={{ title: 'Join'} }
+                    options={{ 
+                        title: 'Join'
+                    }}
                 />
                 <Stack.Screen
                     name="Tab"

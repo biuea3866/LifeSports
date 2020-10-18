@@ -5,7 +5,7 @@ import { readUser } from '../../modules/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
 import palette from '../../styles/palette';
 import HomeScreen from '../Home/HomeScreen';
-import MapScreen from '../Map/MapScreen';
+import MapStackNav from './MapNavigator/MapStackNavigation';
 import BoardStackNav from './BoardNavigator/BoardStackNavigation';
 import SettingScreen from '../Setting/Setting';
 
@@ -70,7 +70,9 @@ const BottomNavigation = ({ route }) => {
             />
             <Tab.Screen 
                 name="Map"
-                component={ MapScreen }
+                children={
+                    () => <MapStackNav user={ userInfo }/>
+                }
             />
             <Tab.Screen 
                 name="Setting"

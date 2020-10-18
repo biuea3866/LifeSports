@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import BoardNaverMap from '../Map/MapComponents/BoardNaverMap';
+import MapScreen from '../Map/MapScreen';
 
 const BoardRegisterLocationAndDate = () => {
     return(
         <View
             style={ styles.container }
         >
-            <BoardNaverMap/>
+            <MapScreen/>
         </View>
     );
 };

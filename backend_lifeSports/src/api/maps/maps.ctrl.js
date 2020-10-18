@@ -78,7 +78,7 @@ export const write = async ctx => {
  *  
  *  [ list method ]
  * 
- *  GET http://localhost:4000/api/maps/  
+ *  GET http://localhost:4000/api/maps/list  
  */
 export const list = async ctx => {
     try {
@@ -90,4 +90,26 @@ export const list = async ctx => {
     }
 };
 
-export const read = ctx => {};
+export const listCategory = async ctx => {
+    const { type_nm } = ctx.params;
+
+    try {
+        const maps = await Map.where('type_nm').equals(type_nm).exec();
+
+        ctx.body = maps;
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+};
+
+export const read = async ctx => {
+    const { id } = ctx.params;
+
+    try {
+        const map = await Map.findById(id).exec()
+        
+        ctx.body = map;
+    } catch(e) {
+        ctx.throw(500, e);
+    }
+};

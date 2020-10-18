@@ -19,6 +19,7 @@ import BoardBody from './BoardComponents/BoardBody';
  *  - BoardBody: This Component will mount Flatlist that is inserted Board items
  */
 const BoardScreen = ({ navigation }) => {
+
   return(
     <ScrollView style={ styles.container }>
       <BoardHeader/>
