@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { writeRental } from '../../modules/rental';
 import { 
@@ -17,7 +17,7 @@ const Payment = () => {
     const dispatch = useDispatch();
     const { 
         paymentType, amount, userName, tel,
-        email, userId, date, time, mapId,
+        email, userId, date, time, mapId, deleteYn,
         rental, rentalError
     } = useSelector(
         ({ rental }) => ({
@@ -33,6 +33,7 @@ const Payment = () => {
             date: route.params.date,
             time: route.params.time,
             mapId: route.params.map._id,
+            deleteYn: false,
             rental: rental.rental,
             rentalError: rental.rentalError
         })
@@ -41,7 +42,7 @@ const Payment = () => {
     const onPress = e => {
         dispatch(writeRental({
             paymentType, amount, userName, tel,
-            email, userId, date, time, mapId,
+            email, userId, date, time, mapId, deleteYn
         }))        
 
         navigation.navigate("Map", {

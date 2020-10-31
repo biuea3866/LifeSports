@@ -3,11 +3,12 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import BoardRegisterNav from './BoardRegisterNavigation'
 import BoardScreen from '../../Board/BoardScreen';
+import BoardMapDetail from '../../Board/BoardComponents/BoardMapDetail';
+import BoardDetail from '../../Board/BoardComponents/BoardDetail';
 
 const Stack = createStackNavigator();
 
 const BoardStackNav = ({ user }) => {
-    console.log(user);
 
     return(
         <Stack.Navigator>
@@ -23,6 +24,16 @@ const BoardStackNav = ({ user }) => {
                 children={
                     () => <BoardRegisterNav user={ user }/>
                 }
+            />
+            <Stack.Screen
+                name="BoardMapDetail"
+                children={
+                    () => <BoardMapDetail user={ user } />
+                }
+            />
+            <Stack.Screen
+                name="BoardDetail"
+                component={ BoardDetail }
             />
         </Stack.Navigator>
     );

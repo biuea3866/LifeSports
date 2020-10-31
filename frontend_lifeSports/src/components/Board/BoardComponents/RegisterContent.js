@@ -1,8 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { changeField } from '../../../modules/boards';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import palette from '../../../styles/palette';
 
 const RegisterContent = () => {
+    const dispatch = useDispatch();
+    const onChange = e => {
+        const value = e.nativeEvent.text;
+        
+        dispatch(
+            changeField({
+                key: 'boardContent',
+                value: value
+            })
+        );
+    };
+
     return(
         <View
             style={ styles.container }
@@ -16,6 +30,7 @@ const RegisterContent = () => {
                 style={ styles.contentInput }
                 placeholder="내용을 입력해주세요"
                 multiline
+                onChange={ onChange }
             />
         </View>
     );

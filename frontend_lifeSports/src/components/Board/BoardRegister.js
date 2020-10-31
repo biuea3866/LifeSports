@@ -3,13 +3,15 @@ import { StyleSheet, ScrollView } from 'react-native';
 import RegisterTitle from './BoardComponents/RegisterTitle';
 import RegisterNav from './BoardComponents/RegisterNav';
 import RegisterContent from './BoardComponents/RegisterContent';
+const BoardRegister = ({ user }) => {
 
-const BoardRegister = () => {
     return(
         <ScrollView
             style={ styles.container }
         >
-            <RegisterTitle/>
+            <RegisterTitle
+                user={ user }
+            />
             <RegisterNav/>
             <RegisterContent/>
         </ScrollView>

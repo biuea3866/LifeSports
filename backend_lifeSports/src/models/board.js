@@ -104,32 +104,19 @@ const MoneySchema = new Schema({
     sender: [SenderSchema]
 });
 
-const RentalSchema = new Schema({
-    locationX: Number,
-    locationY: Number,
-    locationName: String,
-    locationAddress: String,
-    sportsCategory: String,
-    rentalStartTime: Date,
-    rentalFinishTime: Date,
-});
-
 const BoardSchema = new Schema({
+    boardType: String,
+    peopleRestrict: String,
     boardTitle: String,
     boardContent: String,
-    author: String,
-    boardDate: {
-        type: Date,
-        default: Date.now(),
-    },
+    writer: String,
+    boardDate: String,
     comment: [CommentSchema],
     money: [MoneySchema],
-    rental: [RentalSchema],
-    closingDate: Date,
-    closingYn: {
-        type: Boolean,
-        default: false,
-    },
+    mapId: String,
+    date: String,
+    time: String,
+    closingYn: Boolean
 });
 
 const Board = mongoose.model('Board', BoardSchema);

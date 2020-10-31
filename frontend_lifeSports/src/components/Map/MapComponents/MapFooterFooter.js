@@ -2,8 +2,11 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import palette from '../../../styles/palette';
 import { MapConsumer } from '../context/MapContext';
+import { useNavigation } from '@react-navigation/native';
 
-const MapFooterFooter = ({ navigation }) => {
+const MapFooterFooter = () => {
+    const navigation = useNavigation();
+    
     return(
         <View
             style={ styles.FooterFooter }

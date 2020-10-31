@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: palette.white[0],
         borderBottomColor: palette.gray[3],
-        borderBottomWidth: 3,
+        borderBottomWidth: 1,
         justifyContent: 'center',
         alignItems: 'flex-end',
         paddingRight: 30

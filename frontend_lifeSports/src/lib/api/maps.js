@@ -22,7 +22,7 @@ import client from './client';
 export const list = () => client.get('http://localhost:4000/api/maps/list/')
 
 // category List
-export const categoryList = () => client.get(`http://localhost:4000//api/maps/list${type_nm}`);
+export const categoryList = () => client.get(`http://localhost:4000//api/maps/list/${type_nm}`);
 
 // :id list
 export const read = () => client.get(`http://localhost:4000/api/maps/${id}`);

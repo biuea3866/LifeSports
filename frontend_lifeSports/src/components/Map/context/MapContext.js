@@ -3,25 +3,30 @@ import React, { createContext, useState } from 'react';
 const MapContext = createContext({ 
     state: {
         visible: false,
-        map: ''
+        map: '',
+        mapType: '',
     },
     action: {
         setVisible: () => {},
-        setMap: () => {}
+        setMap: () => {},
+        setMapType: () => {},
     }
 });
 
 const MapProvider = ({ children }) => {
     const [visible, setVisible] = useState(false);
     const [map, setMap] = useState('');
+    const [mapType, setMapType] = useState('');
     const value = {
         state: {
             visible,
-            map
+            map,
+            mapType
         },
         actions: {
             setVisible,
-            setMap
+            setMap,
+            setMapType,
         }
     }
 

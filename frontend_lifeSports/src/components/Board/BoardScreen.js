@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  ScrollView,
-  Text,
+  View,
   StyleSheet
 } from 'react-native';
 import BoardHeader from './BoardComponents/BoardHeader';
@@ -21,13 +20,13 @@ import BoardBody from './BoardComponents/BoardBody';
 const BoardScreen = ({ navigation }) => {
 
   return(
-    <ScrollView style={ styles.container }>
+    <View style={ styles.container }>
       <BoardHeader/>
       <BoardNav
         navigation={ navigation }
       />
       <BoardBody/>
-    </ScrollView>
+    </View>
   );
 }
 

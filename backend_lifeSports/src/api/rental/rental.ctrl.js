@@ -12,6 +12,7 @@ export const write = async ctx => {
         date,
         time,
         mapId,
+        deleteYn
     } = ctx.request.body;
 
     const rental = new Rental({
@@ -24,6 +25,7 @@ export const write = async ctx => {
         date,
         time,
         mapId,
+        deleteYn
     });
 
     try {

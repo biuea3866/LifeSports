@@ -30,9 +30,6 @@ const JoinForm = ({ navigation }) => {
         const inputAccessoryViewID = e.target._internalFiberInstanceHandleDEV.memoizedProps.inputAccessoryViewID;
         const value = e.nativeEvent.text;
         
-        // console.log(data);
-        console.log(inputAccessoryViewID);
-        console.log(value)
         dispatch(
             changeField({
                 form: 'register',

@@ -3,7 +3,10 @@ import { all } from 'redux-saga/effects';
 import auth, { authSaga } from './auth';
 import user, { userSaga } from './user';
 import maps, { mapsSaga } from './maps';
+import board, { boardSaga } from './boards';
 import rental, { rentalSaga } from './rental';
+import boardList, { boardListSaga } from './boardList';
+import boardOne, { boardOneSaga } from './boardOne';
 import loading from './loading';
 
 const rootReducer = combineReducers({
@@ -11,11 +14,22 @@ const rootReducer = combineReducers({
     user,
     maps,
     loading,
-    rental
+    rental,
+    board,
+    boardList,
+    boardOne,
 });
 
 export function* rootSaga() {
-    yield all([authSaga(), userSaga(), mapsSaga(), rentalSaga()]);
+    yield all([
+        authSaga(), 
+        userSaga(), 
+        mapsSaga(), 
+        rentalSaga(), 
+        boardSaga(), 
+        boardListSaga(),
+        boardOneSaga()
+    ]);
 }
 
 export default rootReducer;

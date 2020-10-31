@@ -8,7 +8,7 @@ import MapFooterHeader from './MapFooterHeader';
 import MapFooterContent from './MapFooterContent';
 import MapFooterFooter from './MapFooterFooter';
 
-const MapFooter = ({ navigation }) => {
+const MapFooter = () => {
     
     return(
         <View
@@ -16,9 +16,7 @@ const MapFooter = ({ navigation }) => {
         >
             <MapFooterHeader/>
             <MapFooterContent/>
-            <MapFooterFooter
-                navigation={ navigation }
-            />
+            <MapFooterFooter/>
         </View>
     )
 };

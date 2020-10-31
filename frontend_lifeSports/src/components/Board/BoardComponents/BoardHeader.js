@@ -15,7 +15,7 @@ const BoardHeader = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 420,
+        width: '100%',
         height: 70,
         backgroundColor: palette.blue[5],
         justifyContent: 'center',

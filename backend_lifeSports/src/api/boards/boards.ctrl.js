@@ -49,8 +49,18 @@ import Joi from '@hapi/joi';
  */
 export const register = async ctx => {
     const schema = Joi.object().keys({
+        boardType: Joi.string().required(),
+        peopleRestrict: Joi.string().required(),
         boardTitle: Joi.string().required(),
-        boardContent: Joi.string().required()
+        boardContent: Joi.string().required(),
+        writer: Joi.string().required(),
+        boardDate: Joi.string().required(),
+        comment: Joi.array().items(Joi.object()),
+        money: Joi.array().items(Joi.object()),
+        mapId: Joi.string(),
+        date: Joi.string(),
+        time: Joi.string(),
+        closingYn: Joi.bool().required(),
     });
 
     const result = schema.validate(ctx.request.body);
@@ -64,23 +74,31 @@ export const register = async ctx => {
     }
     
     const { 
+        boardType,
+        peopleRestrict,
         boardTitle,
         boardContent,
-        author,
+        writer,
         boardDate,
         comment,
         money,
-        closingDate,
+        mapId,
+        date,
+        time,
         closingYn,
     } = ctx.request.body;
     const board = new Board({
+        boardType,
+        peopleRestrict,
         boardTitle,
         boardContent,
-        author,
+        writer,
         boardDate,
         comment,
         money,
-        closingDate,
+        mapId,
+        date,
+        time,
         closingYn,
     });
 
@@ -103,7 +121,7 @@ export const register = async ctx => {
  */
 export const list = async ctx => {
     try {
-        const boards = await Board.find().exec();
+        const boards = await Board.find().exec()
 
         ctx.body = boards;
     } catch(e) {

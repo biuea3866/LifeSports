@@ -9,7 +9,8 @@ const RentalSchema = new Schema({
     userId: String,
     date: String,
     time: String,
-    mapId: String
+    mapId: String,
+    deleteYn: Boolean
 });
 
 const Rental = mongoose.model('Rental', RentalSchema);
