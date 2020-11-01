@@ -1,13 +1,24 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { readBoardOne } from '../../../modules/boardOne';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const BoardItem = ({ id, title, writer, date }) => {
+const BoardItem = ({ user, item }) => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const { board, error, loading } = useSelector(({ boardOne, loading }) => ({
+        board: boardOne.board,
+        error: boardOne.error,
+        loading: loading['boards/READ_BOARD']
+    }));
     const onPress = e => {
+        dispatch(readBoardOne(item._id));
+
         navigation.navigate("BoardDetail", {
-            id: id
-        })
+            board: item,
+            user: user
+        });
     };
 
     return(
@@ -18,17 +29,17 @@ const BoardItem = ({ id, title, writer, date }) => {
             <Text
                 style={ styles.title }
             >
-                { title }
+                { item.boardTitle }
             </Text>
             <Text
                 style={ styles.writer }
             >
-                { writer }
+                { item.writer }
             </Text>
             <Text
                 style={ styles.date }
             >
-                { date }
+                { item.date }
             </Text>
         </TouchableOpacity>
     )

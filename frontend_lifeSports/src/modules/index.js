@@ -7,6 +7,8 @@ import board, { boardSaga } from './boards';
 import rental, { rentalSaga } from './rental';
 import boardList, { boardListSaga } from './boardList';
 import boardOne, { boardOneSaga } from './boardOne';
+import comment, { commentSaga } from './comment';
+import comments, { commentsSaga } from './comments';
 import loading from './loading';
 
 const rootReducer = combineReducers({
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
     board,
     boardList,
     boardOne,
+    comment,
+    comments,
 });
 
 export function* rootSaga() {
@@ -28,7 +32,9 @@ export function* rootSaga() {
         rentalSaga(), 
         boardSaga(), 
         boardListSaga(),
-        boardOneSaga()
+        boardOneSaga(),
+        commentSaga(),
+        commentsSaga()
     ]);
 }
 

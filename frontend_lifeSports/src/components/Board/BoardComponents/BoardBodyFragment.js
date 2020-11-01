@@ -3,7 +3,10 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import palette from '../../../styles/palette';
 import BoardList from './BoardList';
 
-const BoardBodyFragment = ({ boardType, text, boardList, loading, error }) => {
+const BoardBodyFragment = ({ user, boardType, text, boardList, loading, error }) => {
+    const onPress = e => {
+
+    };
 
     return(
         <View
@@ -18,6 +21,7 @@ const BoardBodyFragment = ({ boardType, text, boardList, loading, error }) => {
                 style={ styles.content }
             >
                 <BoardList 
+                    user={ user }
                     loading={ loading }
                     error={ error }
                     boardList={ boardList }
@@ -26,7 +30,9 @@ const BoardBodyFragment = ({ boardType, text, boardList, loading, error }) => {
             <View
                 style={ styles.footer }
             >
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={ onPress }
+                >
                     <Text>
                         전체 보기
                     </Text>

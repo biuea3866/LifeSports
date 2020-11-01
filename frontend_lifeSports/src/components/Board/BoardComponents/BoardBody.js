@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import palette from '../../../styles/palette';
 import BoardBodyFragement from './BoardBodyFragment';
 
-const BoardBody = () => {
+const BoardBody = ({ user }) => {
     const dispatch = useDispatch();
     let togetherList = [];
     let informationList = [];
@@ -36,13 +36,15 @@ const BoardBody = () => {
             style={ styles.container }
         >
             <BoardBodyFragement
+                user={ user }
                 boardType={ "together" } 
                 text={ "함께해요" }
                 boardList={ togetherList }
                 loading={ loading }
                 error={ error }
             />
-            <BoardBodyFragement 
+            <BoardBodyFragement
+                user= { user } 
                 boardType={ "information" }
                 text={ "도와주세요" }
                 boardList={ informationList }

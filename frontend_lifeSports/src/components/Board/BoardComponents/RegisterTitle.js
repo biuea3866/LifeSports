@@ -77,18 +77,6 @@ const RegisterTitle = () => {
         }
         if(boardError) { 
             console.log(boardError)
-            // console.log(boardType)
-            // console.log(peopleRestrict)
-            // console.log(boardTitle)
-            // console.log(boardContent)
-            // console.log(writer)
-            // console.log(boardDate)
-            // console.log(comment)
-            // console.log(money)
-            // console.log(mapId)
-            // console.log(date)
-            // console.log(time)
-            // console.log(closingYn)
         }
     }, [board, boardError]);
 

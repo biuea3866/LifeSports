@@ -14,7 +14,8 @@ const [
 
 export const writeRental = createAction(
     WRITE_RENTAL, 
-    ({ paymentType,
+    ({ 
+        paymentType,
         amount,
         userName,
         tel,
@@ -23,7 +24,8 @@ export const writeRental = createAction(
         date,
         time,
         mapId,
-        deleteYn }) => ({ 
+        deleteYn 
+    }) => ({ 
         paymentType,
         amount,
         userName,

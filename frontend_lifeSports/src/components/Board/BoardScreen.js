@@ -6,7 +6,7 @@ import {
 import BoardHeader from './BoardComponents/BoardHeader';
 import BoardNav from './BoardComponents/BoardNav';
 import BoardBody from './BoardComponents/BoardBody';
-
+import { useNavigation } from '@react-navigation/native';
 /**
  *  2020 - 10 - 2 (Fri)
  *  Writer: 조봉준
@@ -17,15 +17,17 @@ import BoardBody from './BoardComponents/BoardBody';
  *  - BoardNav: BoardNav will mount WriteButton
  *  - BoardBody: This Component will mount Flatlist that is inserted Board items
  */
-const BoardScreen = ({ navigation }) => {
-
+const BoardScreen = ({ user }) => {
+  const navigation = useNavigation();
   return(
     <View style={ styles.container }>
       <BoardHeader/>
       <BoardNav
         navigation={ navigation }
       />
-      <BoardBody/>
+      <BoardBody
+        user={ user }
+      />
     </View>
   );
 }

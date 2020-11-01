@@ -1,22 +1,52 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import palette from '../../../styles/palette';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { listComments } from '../../../modules/comments';
+import { StyleSheet, ScrollView ,View, Text } from 'react-native';
+import CommentItem from './CommentItem';
 
-const BoardDetailComment = ({ board }) => {
+const BoardDetailComment = ({ user, board }) => {
+    const dispatch = useDispatch();
+    const { comments, error, loading } = useSelector(({ comments, loading }) => ({
+        comments: comments.comments,
+        error: comments.error,
+        loading: loading['comment/LIST_COMMENTS']
+    }));
+
+    useEffect( () => {
+        dispatch(listComments(board._id))
+    }, [dispatch, comments]);
+
     return(
-        <View
+        <ScrollView
             style={ styles.comment }
         >
-            <Text>
-                { board.comment }
-            </Text>
-        </View>
+            {
+                comments ?
+                comments.map(
+                    (item, i) => {
+                        return(
+                            <CommentItem
+                                key={ i }
+                                user={ user }
+                                item={ item }
+                            />
+                        )
+                    }
+                )
+                :
+                console.log("Comment Loading..")
+            }
+        </ScrollView>
     )
 };
 
 const styles = StyleSheet.create({
     comment: {
-        width: '100%'
+        flexDirection: 'column',
+        position: 'absolute',
+        width: '100%',
+        height: '50%',
+        bottom: 80,
     }
 });
 

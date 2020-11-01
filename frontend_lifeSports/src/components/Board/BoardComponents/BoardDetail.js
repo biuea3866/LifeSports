@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { readBoardOne } from '../../../modules/boardOne';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, ScrollView, } from 'react-native';
 import palette from '../../../styles/palette';
 import { useRoute } from '@react-navigation/native';
 import BoardDetailWriter from './BoardDetailWriter';
@@ -13,17 +11,8 @@ import CommentInputBar from './CommentInputBar';
 
 const BoardDetail = () => {
     const route = useRoute();
-    const id = route.params.id;
-    const dispatch = useDispatch();
-    const { board, error, loading } = useSelector(({ boardOne, loading }) => ({
-        board: boardOne.board,
-        error: boardOne.error,
-        loading: loading['boards/READ_BOARD']
-    }));
-
-    useEffect( () => {
-        dispatch(readBoardOne(id))
-    }, [dispatch, id]);
+    const board = route.params.board;
+    const user = route.params.user;
 
     console.log(board);
     return(
@@ -34,8 +23,14 @@ const BoardDetail = () => {
             <BoardDetailDate board={ board } />
             <BoardDetailTitle board={ board } />
             <BoardDetailContent board={ board } />
-            <BoardDetailComment board={ board } />
-            <CommentInputBar/>
+            <BoardDetailComment 
+                user={ user }
+                board={ board } 
+            />
+            <CommentInputBar 
+                user={ user }
+                board={ board }
+            />
         </ScrollView>
     )
 };

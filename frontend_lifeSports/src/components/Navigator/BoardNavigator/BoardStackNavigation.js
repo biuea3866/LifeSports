@@ -14,7 +14,9 @@ const BoardStackNav = ({ user }) => {
         <Stack.Navigator>
             <Stack.Screen
                 name="Board"
-                component={ BoardScreen }
+                children={ 
+                    () => <BoardScreen user={ user } />
+                }
                 options={{ 
                     headerShown: false,
                 }}
