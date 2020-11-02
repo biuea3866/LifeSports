@@ -1,31 +1,53 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import palette from '../../../styles/palette';
 import RentalItem from './RentalItem';
 
-const SettingArticle = ({ user }) => {
+const SettingArticle = ({ rentals }) => {
     return(
-        <View
+        <ScrollView
             style={ styles.container }
         >
-            <Text
+            {/* <View
                 style={ styles.title }
             >
-                대여 현황
-            </Text>
-            <RentalItem/>
-        </View>
+                <Text
+                    style={ styles.titleFont }
+                >
+                    대여 현황
+                </Text>
+            </View> */}
+            {
+                rentals ?
+                rentals.map(
+                    (item, i) => {
+                        return(
+                            <RentalItem
+                                key={ i }
+                                item={ item }
+                            />
+                        )
+                    }
+                ) :
+                console.log("Loading RentalList")
+            }
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'flex-start',
         width: 420,
-        height: 300,
+        height: 210,
+        position: 'absolute',
+        bottom: 150,
         backgroundColor: palette.white[0],
     },
     title: {
+        position: 'absolute',
+        bottom: 180
+    },
+    titleFont: {
         margin: 20,
         fontWeight: 'bold',
         fontSize: 15,

@@ -24,6 +24,7 @@ export const writeRental = createAction(
         date,
         time,
         mapId,
+        mapName,
         deleteYn 
     }) => ({ 
         paymentType,
@@ -35,6 +36,7 @@ export const writeRental = createAction(
         date,
         time,
         mapId,
+        mapName,
         deleteYn
     })
 );
@@ -55,6 +57,7 @@ const initialState = {
     date: '',
     time: '',
     mapId: '',
+    mapName: '',
     deleteYn: '',
     rental: null,
     rentalError: null,

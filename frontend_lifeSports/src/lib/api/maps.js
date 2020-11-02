@@ -25,4 +25,4 @@ export const list = () => client.get('http://localhost:4000/api/maps/list/')
 export const categoryList = () => client.get(`http://localhost:4000//api/maps/list/${type_nm}`);
 
 // :id list
-export const read = () => client.get(`http://localhost:4000/api/maps/${id}`);
+export const read = id => client.get(`http://localhost:4000/api/maps/${id}`);

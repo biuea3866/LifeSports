@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { readMap } from '../../../modules/map';
 import { StyleSheet, View, Text } from 'react-native';
 import palette from '../../../styles/palette';
 
-const RentalItem = () => {
+const RentalItem = ({ item }) => {
+    const dispatch = useDispatch();
+    const { map, error, loading } = useSelector(({ map, loading }) => ({
+        map: map.map,
+        error: map.error,
+        loading: loading['map/READ_MAP']
+    }));
+    const onPress = e => {};
+
+    useEffect( () => {
+        dispatch(readMap(item.mapId))
+    }, [dispatch, item]);
+
     return(
         <View
             style={ styles.container }
@@ -10,15 +24,12 @@ const RentalItem = () => {
             <Text
                 style={ styles.dateFont }
             >
-                01/01 ~ 01/01 
-            </Text>
-            <Text>
-                |
+                { item.date + "  " + item.time }
             </Text>
             <Text
                 style={ styles.locationFont }
             >
-                This is your rental location!
+                { item.mapName }
             </Text>
         </View>
     );
@@ -26,12 +37,13 @@ const RentalItem = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         width: 350,
-        height: 60,
+        height: 50,
         marginLeft: 30,
+        marginTop: 15,
+        marginBottom: 5,
         borderRadius: 30,
         backgroundColor: palette.gray[3]
     },
@@ -42,7 +54,7 @@ const styles = StyleSheet.create({
     locationFont: {
         fontWeight: 'bold',
         fontSize: 15
-    }
+    },
 });
 
 export default RentalItem;

@@ -10,6 +10,7 @@ const RentalSchema = new Schema({
     date: String,
     time: String,
     mapId: String,
+    mapName: String,
     deleteYn: Boolean
 });
 

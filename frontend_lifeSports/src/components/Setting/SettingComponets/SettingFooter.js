@@ -19,9 +19,11 @@ const SettingFooter = () => {
 const styles = StyleSheet.create({
     container: {
         width: 420,
-        height: 200,
+        height: 150,
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'absolute',
+        bottom: 0,
         backgroundColor: palette.white[0],
     },
 });

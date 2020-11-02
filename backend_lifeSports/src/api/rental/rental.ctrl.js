@@ -11,6 +11,7 @@ export const write = async ctx => {
         date,
         time,
         mapId,
+        mapName,
         deleteYn
     } = ctx.request.body;
 
@@ -24,6 +25,7 @@ export const write = async ctx => {
         date,
         time,
         mapId,
+        mapName,
         deleteYn
     });
 
@@ -41,10 +43,23 @@ export const list = async ctx => {
     const { userId } = ctx.params;
 
     try {
-        const rentals = await Rental.find(userId).exec();
+        const rentals = 
+        await Rental.where("userId").equals(userId).exec();
 
         ctx.body = rentals;
-    } catch (e) {
+    } catch(e) {
         ctx.throw(500, e);
     }
 };
+
+export const remove = async ctx => {
+    const { id } = ctx.params;
+
+    try {
+        await Rental.findByIdAndRemove(id).exec();
+
+        ctx.status = 204;
+    } catch(e) {
+        ctx.throw(500, e);
+    }
+}

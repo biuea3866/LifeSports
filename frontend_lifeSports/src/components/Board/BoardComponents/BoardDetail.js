@@ -14,7 +14,6 @@ const BoardDetail = () => {
     const board = route.params.board;
     const user = route.params.user;
 
-    console.log(board);
     return(
         <ScrollView
             style={ styles.container }

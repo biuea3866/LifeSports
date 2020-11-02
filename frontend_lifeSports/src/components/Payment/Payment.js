@@ -17,8 +17,8 @@ const Payment = () => {
     const dispatch = useDispatch();
     const { 
         paymentType, amount, userName, tel,
-        email, userId, date, time, mapId, deleteYn,
-        rental, rentalError
+        email, userId, date, time, mapId, mapName, 
+        deleteYn, rental, rentalError
     } = useSelector(
         ({ rental }) => ({
             paymentType: '카드',
@@ -33,6 +33,7 @@ const Payment = () => {
             date: route.params.date,
             time: route.params.time,
             mapId: route.params.map._id,
+            mapName: route.params.map.nm,
             deleteYn: false,
             rental: rental.rental,
             rentalError: rental.rentalError
@@ -42,7 +43,7 @@ const Payment = () => {
     const onPress = e => {
         dispatch(writeRental({
             paymentType, amount, userName, tel,
-            email, userId, date, time, mapId, deleteYn
+            email, userId, date, time, mapId, mapName, deleteYn
         }))        
 
         navigation.navigate("Map", {
@@ -50,7 +51,6 @@ const Payment = () => {
         })
     };
 
-    console.log(rental);
 
     return(
         <View

@@ -7,7 +7,7 @@ import palette from '../../styles/palette';
 import HomeScreen from '../Home/HomeScreen';
 import MapStackNav from './MapNavigator/MapStackNavigation';
 import BoardStackNav from './BoardNavigator/BoardStackNavigation';
-import SettingScreen from '../Setting/Setting';
+import SettingStackNav from './SettingNavigator/SettingStackNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -77,7 +77,7 @@ const BottomNavigation = ({ route }) => {
             <Tab.Screen 
                 name="Setting"
                 children={ 
-                    () => <SettingScreen user={ userInfo } />
+                    () => <SettingStackNav user={ userInfo } />
                 }
             />
         </Tab.Navigator>

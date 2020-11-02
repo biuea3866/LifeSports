@@ -1,9 +1,30 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import palette from '../../../styles/palette';
-import Icon from 'react-native-vector-icons/Ionicons';
+import SettingIcon from './SettingIcon';
+import { useNavigation } from '@react-navigation/native';
 
-const SettingBody = ({ user }) => {
+const SettingBody = ({ user, rentals }) => {
+    const navigation = useNavigation();
+
+    const onPressMyPage = e => {
+
+    };
+
+    const onPressBoard = e => {
+        
+    };
+
+    const onPressPayment = e => {
+
+    };
+
+    const onPressCancel = e => {
+        navigation.navigate("Cancel", {
+            rentals: rentals
+        })
+    };
+
     return(
         <View
             style={ styles.container }
@@ -11,50 +32,44 @@ const SettingBody = ({ user }) => {
             <View
                 style={ styles.iconLocation }
             >
-                <Icon
-                    size={ 48 }
-                    name='ios-newspaper-outline'
-                    color={ palette.blue[4] }
-                />
-                <Text>
-                    공지 사항
-                </Text>
+                <TouchableOpacity>
+                    <SettingIcon
+                        name={ 'ios-person-circle-outline' }
+                        text={ "정보" }
+                    />
+                </TouchableOpacity>
             </View>
             <View
                 style={ styles.iconLocation }
             >
-                <Icon
-                    size={ 48 }
-                    name='ios-person-circle-outline'
-                    color={ palette.blue[4] }
-                />
-                <Text>
-                    내 정보
-                </Text>
+                <TouchableOpacity>
+                    <SettingIcon
+                        name={ 'ios-person-circle-outline' }
+                        text={ "게시글" }
+                    />
+                </TouchableOpacity>
             </View>
             <View
                 style={ styles.iconLocation }
             >
-                <Icon
-                    size={ 48 }
-                    name='ios-document-text-outline'
-                    color={ palette.blue[4] }
-                />
-                <Text>
-                    결제 내역
-                </Text>
+                <TouchableOpacity>
+                    <SettingIcon
+                        name={ 'ios-document-text-outline' }
+                        text={ "결제내역" }
+                    />
+                </TouchableOpacity>
             </View>
             <View
                 style={ styles.iconLocation }
             >
-                <Icon
-                    size={ 48 }
-                    name='ios-card-outline'
-                    color={ palette.blue[4] }
-                />
-                <Text>
-                    결제 방식
-                </Text>
+                <TouchableOpacity
+                    onPress={ onPressCancel }
+                >
+                    <SettingIcon
+                        name={ 'ios-card-outline' }
+                        text={ "대관취소" }
+                    />
+                </TouchableOpacity>
             </View>
         </View>
     )
