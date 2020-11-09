@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { readUser } from '../../modules/auth';
 import Icon from 'react-native-vector-icons/Ionicons';
 import palette from '../../styles/palette';
-import HomeScreen from '../Home/HomeScreen';
 import MapStackNav from './MapNavigator/MapStackNavigation';
 import BoardStackNav from './BoardNavigator/BoardStackNavigation';
 import SettingStackNav from './SettingNavigator/SettingStackNavigation';
+import HomeStackNav from './HomeNavigator/HomeStackNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -60,7 +60,9 @@ const BottomNavigation = ({ route }) => {
         >
             <Tab.Screen 
                 name="Home"
-                component={ HomeScreen }
+                children={
+                    () => <HomeStackNav user={ userInfo } />
+                }
             />
             <Tab.Screen 
                 name="Board"

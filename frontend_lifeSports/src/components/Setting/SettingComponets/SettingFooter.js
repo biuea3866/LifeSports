@@ -4,13 +4,13 @@ import palette from '../../../styles/palette';
 import MileageComponent from './MileageComponent';
 import LogoutButton from './LogoutButton';
 
-const SettingFooter = () => {
+const SettingFooter = ({ user }) => {
 
     return(
         <View
             style={ styles.container }
         >
-            <MileageComponent/>
+            <MileageComponent user={ user }/>
             <LogoutButton/>
         </View>
     )

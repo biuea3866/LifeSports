@@ -41,7 +41,7 @@ const NaverMap = () => {
                         center={
                             {
                                 ...defaultLocation,
-                                zoom: 11
+                                zoom: 15
                             }
                         }
                         scaleBar={ true }

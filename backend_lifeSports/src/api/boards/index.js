@@ -5,6 +5,8 @@ const boards = new Router();
 
 boards.get('/list', boardsCtrl.list);
 
+boards.get('/list/:userId', boardsCtrl.readList);
+
 boards.post('/register', boardsCtrl.register);
 
 boards.get('/:id', boardsCtrl.read);

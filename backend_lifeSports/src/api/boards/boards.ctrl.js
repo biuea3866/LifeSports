@@ -53,6 +53,7 @@ export const register = async ctx => {
         peopleRestrict: Joi.string().required(),
         boardTitle: Joi.string().required(),
         boardContent: Joi.string().required(),
+        userId: Joi.string().required(),
         writer: Joi.string().required(),
         boardDate: Joi.string().required(),
         comment: Joi.array().items(Joi.object()),
@@ -78,6 +79,7 @@ export const register = async ctx => {
         peopleRestrict,
         boardTitle,
         boardContent,
+        userId,
         writer,
         boardDate,
         comment,
@@ -92,6 +94,7 @@ export const register = async ctx => {
         peopleRestrict,
         boardTitle,
         boardContent,
+        userId,
         writer,
         boardDate,
         comment,
@@ -150,6 +153,19 @@ export const read = async ctx => {
         }
 
         ctx.body = board;
+    } catch(e) {
+        ctx.throw(500, e);
+    }
+};
+
+export const readList = async ctx => {
+    const { userId } = ctx.params;
+
+    try {
+        const boards = 
+        await Board.where("userId").equals(userId).exec();
+
+        ctx.body = boards;
     } catch(e) {
         ctx.throw(500, e);
     }

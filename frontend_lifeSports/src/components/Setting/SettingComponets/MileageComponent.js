@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import palette from '../../../styles/palette';
 
-const MileageComponent = () => {
+const MileageComponent = ({ user }) => {
     return(
         <View
             style={ styles.container }
@@ -10,18 +10,26 @@ const MileageComponent = () => {
             <Text
                 style={ styles.textColor }
             >
-                마일리지
+                포인트
             </Text>
-            <Text
-                style={ styles.mileageText }
+            <View
+                style={ styles.mileageLocation }
             >
-                1000
-            </Text>
-            <Text
+                <Text
+                    style={ styles.mileageText }
+                >
+                    { user.point }
+                </Text>
+            </View>
+            <View
                 style={ styles.pointLocation }
             >
-                P
-            </Text>
+                <Text
+                    style={ styles.pointFont }
+                >
+                    P
+                </Text>
+            </View>
         </View>
     );
 }
@@ -42,6 +50,9 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: palette.white[0]
     },
+    mileageLocation: {
+        width: '77%'
+    },
     mileageText: {
         fontWeight: 'bold',
         fontSize: 15,
@@ -49,10 +60,13 @@ const styles = StyleSheet.create({
         paddingLeft: 175
     },
     pointLocation: {
+        width: '10%',
+        paddingLeft: 5
+    },
+    pointFont: {
         fontWeight: 'bold',
         fontSize: 15,
         color: palette.white[0],
-        paddingLeft: 5
     }
 });
 

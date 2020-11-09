@@ -24,10 +24,7 @@ const Payment = () => {
             paymentType: '카드',
             amount: route.params.amount,
             userName: route.params.user.userName,
-            tel: '010-' +
-                 route.params.user.phoneMiddleNumber +
-                 '-' +
-                 route.params.user.phoneLastNumber ,
+            tel: route.params.user.phoneNumber,
             email: route.params.user.email,
             userId: route.params.user._id,
             date: route.params.date,
@@ -122,10 +119,7 @@ const Payment = () => {
                     <StyledTextInput
                         placeholderTextColor={ palette.gray[3] }
                         value={ 
-                            '010-' + 
-                            route.params.user.phoneMiddleNumber + 
-                            '-' +  
-                            route.params.user.phoneLastNumber
+                            route.params.user.phoneNumber
                         }
                     />
                 </View>

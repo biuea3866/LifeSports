@@ -8,7 +8,6 @@ const BoardMapDetailNav = ({ map }) => {
         <View
             style={ styles.container }
         >
-            {/* 실내, 주차, 교육 */}
             <View
                 style={ styles.IconArea }
             >
@@ -16,16 +15,16 @@ const BoardMapDetailNav = ({ map }) => {
                     name={ "ios-car" }
                 />
                 {
-                    map.parking_lot == '주차 가능' ?
-                    <Text
-                        style={ styles.IconText }
-                    >
-                        주차 가능
-                    </Text> :
+                    map.parking_lot == ( '주차 불가' || '-' )?
                     <Text
                         style={ styles.IconText }
                     >
                         주차 불가
+                    </Text> :
+                    <Text
+                        style={ styles.IconText }
+                    >
+                        주차 가능
                     </Text>
                 }
             </View>

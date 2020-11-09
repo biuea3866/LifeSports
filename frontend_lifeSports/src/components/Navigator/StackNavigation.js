@@ -16,7 +16,6 @@ const StackNav = () => {
                     name="Login"
                     component={ LoginScreen }
                     options={{ 
-                        title: 'Login',
                         headerShown: false,
                     }}
                 />

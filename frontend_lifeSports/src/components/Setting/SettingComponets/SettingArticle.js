@@ -8,15 +8,6 @@ const SettingArticle = ({ rentals }) => {
         <ScrollView
             style={ styles.container }
         >
-            {/* <View
-                style={ styles.title }
-            >
-                <Text
-                    style={ styles.titleFont }
-                >
-                    대여 현황
-                </Text>
-            </View> */}
             {
                 rentals ?
                 rentals.map(

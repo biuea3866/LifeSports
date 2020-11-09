@@ -5,7 +5,6 @@ import { listMaps } from '../../../modules/maps';
 import NaverMapView from 'react-native-nmap';
 import CustomMarker from './CustomMarker';
 import { BoardConsumer } from '../context/BoardContext';
-import { useRoute } from '@react-navigation/native';
 
 const BoardNaverMap = () => {
     const dispatch = useDispatch();

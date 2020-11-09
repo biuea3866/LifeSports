@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import { Marker } from 'react-native-nmap';
 import palette from '../../../styles/palette';
 import markerImage from '../../../../android/app/src/main/assets/img/markerImage.png';
-import MapFooter from './MapFooter';
 import { MapConsumer } from '../context/MapContext';
 
 /*  2020 - 09 - 28 (Mon)
@@ -29,7 +28,7 @@ const CustomMarker = ({ data }) => {
                         caption={
                             {
                                 text: data.nm,
-                                textSize: 15,
+                                textSize: 13,
                             }
                         }
                         onClick={ 

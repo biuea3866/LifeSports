@@ -5,6 +5,8 @@ import BoardRegisterNav from './BoardRegisterNavigation'
 import BoardScreen from '../../Board/BoardScreen';
 import BoardMapDetail from '../../Board/BoardComponents/BoardMapDetail';
 import BoardDetail from '../../Board/BoardComponents/BoardDetail';
+import BoardFullMap from '../../Board/BoardComponents/BoardFullMap';
+import BoardTypeList from '../../Board/BoardComponents/BoardTypeList';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +38,14 @@ const BoardStackNav = ({ user }) => {
             <Stack.Screen
                 name="BoardDetail"
                 component={ BoardDetail }
+            />
+            <Stack.Screen 
+                name="fullMap"
+                component={ BoardFullMap }
+            />
+            <Stack.Screen
+                name="BoardTypeList"
+                component={ BoardTypeList }
             />
         </Stack.Navigator>
     );

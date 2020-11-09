@@ -36,12 +36,12 @@ export const register = ({
         email, password, 
         userName, nickName, 
         socialNumberPrefix, socialNumberSuffix, 
-        addr, phoneNumber
+        addr, phoneNumber, point
     }) => client.post('http://localhost:4000/api/auth/register', { 
         email, password, 
         userName, nickName, 
         socialNumberPrefix, socialNumberSuffix, 
-        addr, phoneNumber
+        addr, phoneNumber, point
     }
 );
 
@@ -56,3 +56,5 @@ export const check = () => client.get('http://localhost:4000/api/auth/check');
  *  POST http://localhost:4000/api/auth/{id}  
  */
 export const readUser = id => client.get(`http://localhost:4000/api/auth/${id}`);
+
+export const logout = () => client.post('/api/auth/logout');

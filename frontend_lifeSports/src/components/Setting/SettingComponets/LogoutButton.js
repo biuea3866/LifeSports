@@ -1,18 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import palette from '../../../styles/palette';
+import { logout } from '../../../modules/user';
+import { useNavigation } from '@react-navigation/native';
 
 const LogoutButton = () => {
+    const navigation = useNavigation();
+    const { user } = useSelector(({ user }) => ({ user: user.user }));
+    const dispatch = useDispatch();
+    const onLogout = () => {
+        dispatch(logout());
+
+        navigation.navigate(
+            "Login"
+        );
+    };
+
     return(
-        <View
+        <TouchableOpacity
             style={ styles.container }
+            onPress={ onLogout }
         >
             <Text
                 style={ styles.textColor }
             >
                 로그아웃
             </Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 

@@ -2,10 +2,15 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import palette from '../../../styles/palette';
 import BoardList from './BoardList';
+import { useNavigation } from '@react-navigation/native';
 
-const BoardBodyFragment = ({ user, boardType, text, boardList, loading, error }) => {
+const BoardBodyFragment = ({ user, text, boardList, loading, error }) => {
+    const navigation = useNavigation();
     const onPress = e => {
-
+        navigation.navigate("BoardTypeList", {
+            boardList: boardList,
+            user: user
+        })
     };
 
     return(

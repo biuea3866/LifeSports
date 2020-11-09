@@ -41,6 +41,7 @@ export const register = async ctx => {
         socialNumberSuffix: Joi.string().required(),
         addr: Joi.string().required(),
         phoneNumber: Joi.string().required(),
+        point: Joi.number(),
     });
 
     const result = schema.validate(ctx.request.body);
@@ -55,7 +56,7 @@ export const register = async ctx => {
     const { email, password, 
             userName, nickName, 
             socialNumberPrefix, socialNumberSuffix, 
-            addr, phoneNumber 
+            addr, phoneNumber, point 
         } = ctx.request.body;
 
     try {
@@ -75,7 +76,8 @@ export const register = async ctx => {
             socialNumberPrefix,
             socialNumberSuffix,
             addr,
-            phoneNumber 
+            phoneNumber,
+            point 
         });
 
         await user.setPassword(password);    // Set Password
@@ -209,4 +211,4 @@ export const readUser = async ctx => {
     } catch(e) {
         ctx.throw(500, e);
     }
-}
+};

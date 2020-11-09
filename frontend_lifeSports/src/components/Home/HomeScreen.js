@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  Text,
   StyleSheet,
   ScrollView
 } from 'react-native';

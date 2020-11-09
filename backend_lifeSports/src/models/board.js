@@ -109,6 +109,7 @@ const BoardSchema = new Schema({
     peopleRestrict: String,
     boardTitle: String,
     boardContent: String,
+    userId: String,
     writer: String,
     boardDate: String,
     comment: [CommentSchema],

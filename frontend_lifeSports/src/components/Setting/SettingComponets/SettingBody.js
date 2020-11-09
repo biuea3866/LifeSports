@@ -12,11 +12,9 @@ const SettingBody = ({ user, rentals }) => {
     };
 
     const onPressBoard = e => {
-        
-    };
-
-    const onPressPayment = e => {
-
+        navigation.navigate("SettingBoard", {
+            user: user
+        })  
     };
 
     const onPressCancel = e => {
@@ -42,20 +40,12 @@ const SettingBody = ({ user, rentals }) => {
             <View
                 style={ styles.iconLocation }
             >
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={ onPressBoard }
+                >
                     <SettingIcon
-                        name={ 'ios-person-circle-outline' }
+                        name={ 'ios-albums-outline' }
                         text={ "게시글" }
-                    />
-                </TouchableOpacity>
-            </View>
-            <View
-                style={ styles.iconLocation }
-            >
-                <TouchableOpacity>
-                    <SettingIcon
-                        name={ 'ios-document-text-outline' }
-                        text={ "결제내역" }
                     />
                 </TouchableOpacity>
             </View>
@@ -91,7 +81,7 @@ const styles = StyleSheet.create({
         height: 60,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 15
+        margin: 30
     }
 });
 

@@ -46,7 +46,7 @@ const JoinForm = ({ navigation }) => {
             email, password, passwordConfirm,
             userName, nickName,
             socialNumberPrefix, socialNumberSuffix, 
-            addr, phoneNumber
+            addr, phoneNumber, point
         } = form;
 
         if(
@@ -77,7 +77,7 @@ const JoinForm = ({ navigation }) => {
             email, password,
             userName, nickName,
             socialNumberPrefix, socialNumberSuffix, 
-            addr, phoneNumber
+            addr, phoneNumber, point
         }));
 
         if(auth) {
@@ -97,9 +97,6 @@ const JoinForm = ({ navigation }) => {
         const inputAccessoryViewID = "addr";
         const value = data.address;
 
-        console.log(inputAccessoryViewID);
-        console.log(value)
-
         dispatch(
             changeField({
                 form: 'register',
@@ -108,6 +105,12 @@ const JoinForm = ({ navigation }) => {
             })
         )
     }, [data.address]);
+
+    changeField({
+        form: 'register',
+        key: 'point',
+        value: 10000000,
+    });
 
     useEffect( () => {
         if(authError) {

@@ -15,7 +15,7 @@ function getToday(){
     return year + "-" + month + "-" + day;
 }
 
-const RegisterTitle = () => {
+const RegisterTitle = ({ user }) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const {
@@ -23,6 +23,7 @@ const RegisterTitle = () => {
         peopleRestrict,
         boardTitle,
         boardContent,
+        userId,
         writer,
         boardDate,
         comment,
@@ -39,9 +40,9 @@ const RegisterTitle = () => {
             peopleRestrict: board.peopleRestrict,
             boardTitle: board.boardTitle,
             boardContent: board.boardContent,
+            userId: user._id,
             writer: board.writer,
             boardDate: getToday(),
-            comment: [],
             money: [],
             mapId: board.mapId,
             date: board.date,
@@ -58,6 +59,7 @@ const RegisterTitle = () => {
             peopleRestrict,
             boardTitle,
             boardContent,
+            userId,
             writer,
             boardDate,
             comment,

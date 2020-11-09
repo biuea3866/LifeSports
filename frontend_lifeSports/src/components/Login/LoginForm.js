@@ -91,9 +91,6 @@ const LoginForm = ({ navigation }) => {
 
     return(
         <View style={styles.loginForm}>
-            <View>
-                <Text>Login Screen</Text>
-            </View>
             <StyledTextInput
                 inputAccessoryViewID="email"
                 placeholder="Email.."

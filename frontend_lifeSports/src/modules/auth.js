@@ -47,11 +47,11 @@ export const register = createAction(
         email, password,
         userName, nickName,  
         socialNumberPrefix, socialNumberSuffix, 
-        addr, phoneNumber }) => ({
+        addr, phoneNumber, point }) => ({
         email, password,
         userName, nickName, 
         socialNumberPrefix, socialNumberSuffix, 
-        addr, phoneNumber
+        addr, phoneNumber, point
     })
 );
 
@@ -84,7 +84,8 @@ const initialState = {
         socialNumberPrefix: '', 
         socialNumberSuffix: '', 
         addr: '', 
-        phoneNumber: ''
+        phoneNumber: '',
+        point: 1000000,
     },
     login: {
         email: '',

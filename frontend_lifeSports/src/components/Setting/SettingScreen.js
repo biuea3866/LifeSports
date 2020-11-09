@@ -20,7 +20,7 @@ const SettingScreen = ({ user }) => {
 
   useEffect( () => {
       dispatch(listRentals(user._id))
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   console.log(rentals)
   return(
